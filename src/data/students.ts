@@ -1,0 +1,127 @@
+import type { RecentActivityItem, Student, StudentSummary, StudentTimelinePoint } from '@/types';
+
+export const students: Student[] = [
+  {
+    id: 'stu-001',
+    fullName: 'John Doe',
+    email: 'john.doe@school.io',
+    classLevel: 'Grade 10',
+    status: 'active',
+    tuitionBalance: 120,
+    booksBorrowed: 3,
+    registeredAt: '2024-01-15',
+  },
+  {
+    id: 'stu-002',
+    fullName: 'Amelia Carter',
+    email: 'amelia.carter@school.io',
+    classLevel: 'Grade 11',
+    status: 'active',
+    tuitionBalance: 0,
+    booksBorrowed: 2,
+    registeredAt: '2023-09-03',
+  },
+  {
+    id: 'stu-003',
+    fullName: 'Liam Patel',
+    email: 'liam.patel@school.io',
+    classLevel: 'Grade 12',
+    status: 'graduated',
+    tuitionBalance: 0,
+    booksBorrowed: 0,
+    registeredAt: '2020-08-12',
+  },
+  {
+    id: 'stu-004',
+    fullName: 'Sophia Martinez',
+    email: 'sophia.martinez@school.io',
+    classLevel: 'Grade 9',
+    status: 'active',
+    tuitionBalance: 450,
+    booksBorrowed: 4,
+    registeredAt: '2024-04-22',
+  },
+  {
+    id: 'stu-005',
+    fullName: 'Noah Kim',
+    email: 'noah.kim@school.io',
+    classLevel: 'Grade 10',
+    status: 'inactive',
+    tuitionBalance: 760,
+    booksBorrowed: 1,
+    registeredAt: '2022-02-10',
+  },
+  {
+    id: 'stu-006',
+    fullName: 'Emma Williams',
+    email: 'emma.williams@school.io',
+    classLevel: 'Grade 8',
+    status: 'active',
+    tuitionBalance: 0,
+    booksBorrowed: 5,
+    registeredAt: '2024-07-02',
+  },
+  {
+    id: 'stu-007',
+    fullName: 'Oliver Smith',
+    email: 'oliver.smith@school.io',
+    classLevel: 'Grade 9',
+    status: 'active',
+    tuitionBalance: 230,
+    booksBorrowed: 2,
+    registeredAt: '2023-12-18',
+  },
+  {
+    id: 'stu-008',
+    fullName: 'Ava Chen',
+    email: 'ava.chen@school.io',
+    classLevel: 'Grade 11',
+    status: 'active',
+    tuitionBalance: 0,
+    booksBorrowed: 1,
+    registeredAt: '2023-01-11',
+  },
+];
+
+export const studentSummary: StudentSummary = {
+  total: students.length,
+  active: students.filter((student) => student.status === 'active').length,
+  graduated: students.filter((student) => student.status === 'graduated').length,
+  overdue: students.filter((student) => student.tuitionBalance > 0).length,
+};
+
+export const studentTimeline: StudentTimelinePoint[] = [
+  { month: 'Jan', total: 120 },
+  { month: 'Feb', total: 126 },
+  { month: 'Mar', total: 132 },
+  { month: 'Apr', total: 138 },
+  { month: 'May', total: 141 },
+  { month: 'Jun', total: 149 },
+  { month: 'Jul', total: 152 },
+  { month: 'Aug', total: 155 },
+  { month: 'Sep', total: 160 },
+  { month: 'Oct', total: 165 },
+  { month: 'Nov', total: 169 },
+  { month: 'Dec', total: 172 },
+];
+
+export const studentActivities: RecentActivityItem[] = [
+  {
+    id: 'activity-001',
+    source: 'students',
+    message: "New student 'Sophia Martinez' registered",
+    timestamp: new Date().toISOString(),
+  },
+  {
+    id: 'activity-002',
+    source: 'students',
+    message: "Payment of  received from 'Sophia Martinez'",
+    timestamp: new Date(Date.now() - 1000 * 60 * 60 * 4).toISOString(),
+  },
+  {
+    id: 'activity-003',
+    source: 'students',
+    message: "'Noah Kim' tuition flagged as overdue",
+    timestamp: new Date(Date.now() - 1000 * 60 * 60 * 10).toISOString(),
+  },
+];
