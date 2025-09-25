@@ -7,6 +7,8 @@ const fetchStudents = async () => {
   await new Promise((resolve) => setTimeout(resolve, 200));
   return {
     students: state.students,
+    classes: state.classes,
+    payments: state.payments,
     summary: state.summary,
     timeline: state.timeline,
   };

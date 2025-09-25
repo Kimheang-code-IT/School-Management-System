@@ -1,4 +1,9 @@
-import type { HTMLAttributes, TableHTMLAttributes } from 'react';
+import type {
+  HTMLAttributes,
+  TableHTMLAttributes,
+  TdHTMLAttributes,
+  ThHTMLAttributes,
+} from 'react';
 import { forwardRef } from 'react';
 
 import { cn } from '@/utils/cn';
@@ -24,7 +29,7 @@ export const TableRow = ({ className, ...props }: HTMLAttributes<HTMLTableRowEle
   <tr className={cn('divide-x divide-slate-800/60 transition hover:bg-slate-800/40', className)} {...props} />
 );
 
-export const TableHead = ({ className, ...props }: HTMLAttributes<HTMLTableCellElement>) => (
+export const TableHead = ({ className, ...props }: ThHTMLAttributes<HTMLTableCellElement>) => (
   <th
     className={cn('px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400', className)}
     {...props}
@@ -35,6 +40,6 @@ export const TableBody = ({ className, ...props }: HTMLAttributes<HTMLTableSecti
   <tbody className={cn('divide-y divide-slate-800/60', className)} {...props} />
 );
 
-export const TableCell = ({ className, ...props }: HTMLAttributes<HTMLTableCellElement>) => (
+export const TableCell = ({ className, ...props }: TdHTMLAttributes<HTMLTableCellElement>) => (
   <td className={cn('whitespace-nowrap px-4 py-3 text-slate-200', className)} {...props} />
 );

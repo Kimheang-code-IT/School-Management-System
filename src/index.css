@@ -4,9 +4,15 @@
 
 :root {
   color-scheme: dark;
+  font-size: 12px;
+}
+
+* {
+  font-size: 12px !important;
 }
 
 body {
+  font-size: 12px;
   @apply bg-slate-950 text-slate-100 font-sans antialiased;
 }
 
@@ -18,3 +24,4 @@ body {
 ::selection {
   @apply bg-brand text-slate-950;
 }
+

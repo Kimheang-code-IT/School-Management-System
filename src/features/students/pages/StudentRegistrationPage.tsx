@@ -12,12 +12,13 @@ import { Label } from '@/components/ui/Label';
 import { Textarea } from '@/components/ui/Textarea';
 
 const registrationSchema = z.object({
-  fullName: z.string().min(3, 'Name must be at least 3 characters'),
+  fullName: z.string().min(3, 'Student name must be at least 3 characters'),
+  sex: z.string().min(1, 'Select a sex option'),
   email: z.string().email('Provide a valid email'),
-  classLevel: z.string().min(2, 'Class/grade required'),
-  guardianName: z.string().min(3, 'Guardian name required'),
-  guardianContact: z.string().min(8, 'Contact number required'),
-  startDate: z.string().min(1, 'Start date required'),
+  phone: z.string().min(8, 'Phone number required'),
+  classLevel: z.string().min(2, 'Class is required'),
+  session: z.string().min(1, 'Session is required'),
+  location: z.string().min(2, 'Location is required'),
   notes: z.string().max(500).optional(),
 });
 
@@ -35,11 +36,12 @@ const StudentRegistrationPage = () => {
     resolver: zodResolver(registrationSchema),
     defaultValues: {
       fullName: '',
+      sex: '',
       email: '',
+      phone: '',
       classLevel: '',
-      guardianName: '',
-      guardianContact: '',
-      startDate: '',
+      session: '',
+      location: '',
       notes: '',
     },
   });
@@ -74,33 +76,66 @@ const StudentRegistrationPage = () => {
               {errors.fullName && <p className="text-sm text-rose-400">{errors.fullName.message}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Student email</Label>
+              <Label htmlFor="sex">Sex</Label>
+              <select
+                id="sex"
+                {...register('sex')}
+                className="h-10 w-full rounded-md border border-slate-800 bg-slate-950/60 px-3 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand"
+                defaultValue=""
+              >
+                <option value="" disabled>
+                  Select sex
+                </option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                <option value="other">Other</option>
+              </select>
+              {errors.sex && <p className="text-sm text-rose-400">{errors.sex.message}</p>}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
               <Input id="email" type="email" placeholder="jane.doe@school.io" {...register('email')} />
               {errors.email && <p className="text-sm text-rose-400">{errors.email.message}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="classLevel">Class / Grade</Label>
+              <Label htmlFor="phone">Phone number</Label>
+              <Input id="phone" placeholder="(+1) 555-0101" {...register('phone')} />
+              {errors.phone && <p className="text-sm text-rose-400">{errors.phone.message}</p>}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="classLevel">Class</Label>
               <Input id="classLevel" placeholder="Grade 9" {...register('classLevel')} />
               {errors.classLevel && <p className="text-sm text-rose-400">{errors.classLevel.message}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="startDate">Intended start date</Label>
-              <Input id="startDate" type="date" {...register('startDate')} />
-              {errors.startDate && <p className="text-sm text-rose-400">{errors.startDate.message}</p>}
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="guardianName">Guardian name</Label>
-              <Input id="guardianName" placeholder="Parent or guardian" {...register('guardianName')} />
-              {errors.guardianName && <p className="text-sm text-rose-400">{errors.guardianName.message}</p>}
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="guardianContact">Guardian contact</Label>
-              <Input id="guardianContact" placeholder="(+1) 555-123-4567" {...register('guardianContact')} />
-              {errors.guardianContact && <p className="text-sm text-rose-400">{errors.guardianContact.message}</p>}
+              <Label htmlFor="session">Session</Label>
+              <select
+                id="session"
+                {...register('session')}
+                className="h-10 w-full rounded-md border border-slate-800 bg-slate-950/60 px-3 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand"
+                defaultValue=""
+              >
+                <option value="" disabled>
+                  Select session
+                </option>
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+              </select>
+              {errors.session && <p className="text-sm text-rose-400">{errors.session.message}</p>}
             </div>
             <div className="md:col-span-2 space-y-2">
-              <Label htmlFor="notes">Notes</Label>
-              <Textarea id="notes" placeholder="Additional context, accommodations, prior transcripts…" {...register('notes')} />
+              <Label htmlFor="location">Location</Label>
+              <Input id="location" placeholder="Provide location" {...register('location')} />
+              {errors.location && <p className="text-sm text-rose-400">{errors.location.message}</p>}
+            </div>
+            <div className="md:col-span-2 space-y-2">
+              <Label htmlFor="notes">Notes (optional)</Label>
+              <Textarea
+                id="notes"
+                placeholder="Additional context, accommodations, or onboarding details."
+                {...register('notes')}
+              />
               {errors.notes && <p className="text-sm text-rose-400">{errors.notes.message}</p>}
             </div>
           </CardContent>
