@@ -13,11 +13,6 @@ const StockReportsPage = () => {
     <div className="space-y-6">
       <ModuleHeader title="Inventory Reports" description="Quick health report for campus stock." />
 
-      <Callout>
-        Export to CSV, vendor scorecards, and automated replenishment triggers are queued. Today’s snapshot surfaces
-        manual insights only.
-      </Callout>
-
       {isLoading || !data ? (
         <Skeleton className="h-56 w-full" />
       ) : (
@@ -61,7 +56,7 @@ const StockReportsPage = () => {
                     .map((product) => ({
                       ...product,
                       valuation: product.unitPrice * product.quantity,
-                      categoryName: data.categories.find((cat) => cat.id === product.categoryId)?.name ?? '—',
+                      categoryName: data.categories.find((cat) => cat.id === product.categoryId)?.name ?? 'ï¿½',
                     }))
                     .sort((a, b) => b.valuation - a.valuation)
                     .slice(0, 5)

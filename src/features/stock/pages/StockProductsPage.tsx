@@ -16,10 +16,6 @@ const StockProductsPage = () => {
         description="Monitor stock levels and plan replenishment."
       />
 
-      <Callout>
-        Vendor lead-times and automated purchase orders will wire into this grid in a future release. Until then, rely on
-        the low stock indicators below.
-      </Callout>
 
       {isLoading || !data ? (
         <Skeleton className="h-64 w-full" />
@@ -47,7 +43,7 @@ const StockProductsPage = () => {
                   return (
                     <TableRow key={product.id} className={isLow ? 'bg-amber-500/10' : undefined}>
                       <TableCell className="font-medium text-slate-100">{product.name}</TableCell>
-                      <TableCell>{category?.name ?? '—'}</TableCell>
+                      <TableCell>{category?.name ?? 'ï¿½'}</TableCell>
                       <TableCell>{formatNumber(product.quantity)}</TableCell>
                       <TableCell>{formatNumber(product.reorderPoint)}</TableCell>
                       <TableCell>{formatCurrency(product.unitPrice)}</TableCell>

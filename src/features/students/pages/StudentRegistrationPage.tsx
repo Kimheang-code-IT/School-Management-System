@@ -59,11 +59,6 @@ const StudentRegistrationPage = () => {
         description="Capture enrollment requests with validation and guardrails."
       />
 
-      <Callout>
-        Submission currently stores mock data locally. API integration hooks are scaffolded to align with future
-        admissions and CRM pipelines.
-      </Callout>
-
       <Card className="border-slate-800/80 bg-slate-900/70">
         <CardHeader>
           <CardTitle className="text-base text-slate-200">Enrollment Form</CardTitle>

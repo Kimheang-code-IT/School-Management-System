@@ -6,6 +6,7 @@ import { Callout } from '@/components/ui/Callout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { Label } from '@/components/ui/Label';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/Table';
 import { formatCurrency, formatDate } from '@/utils/formatters';
 
@@ -159,24 +160,29 @@ const StudentsPaymentPage = () => {
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-4">
-            <div className="md:col-span-2">
+          <div className="flex flex-wrap items-center gap-3 lg:flex-nowrap lg:gap-4">
+            <div className="flex min-w-[260px] flex-1 items-center gap-2">
+              <Label htmlFor="payments-search" className="shrink-0 text-xs font-medium text-slate-300">
+                Search
+              </Label>
               <Input
+                id="payments-search"
                 value={searchTerm}
                 onChange={(event) => setSearchTerm(event.target.value)}
                 placeholder="Search by student, email, purpose, or phone"
                 aria-label="Search payments"
+                className="flex-1"
               />
             </div>
-            <div className="space-y-2">
-              <label className="text-xs font-medium uppercase tracking-wide text-slate-400" htmlFor="method-filter">
+            <div className="flex min-w-[200px] items-center gap-2 lg:w-[220px]">
+              <Label htmlFor="method-filter" className="shrink-0 text-xs font-medium text-slate-300">
                 Method
-              </label>
+              </Label>
               <select
                 id="method-filter"
                 value={methodFilter}
                 onChange={(event) => setMethodFilter(event.target.value as typeof methodFilter)}
-                className="h-10 w-full rounded-md border border-slate-800 bg-slate-950/60 px-3 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand"
+                className="h-10 flex-1 rounded-md border border-slate-800 bg-slate-950/60 px-3 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand"
               >
                 <option value="all">All methods</option>
                 <option value="Credit Card">Credit Card</option>
@@ -184,30 +190,34 @@ const StudentsPaymentPage = () => {
                 <option value="Cash">Cash</option>
               </select>
             </div>
-            <div className="space-y-2">
-              <label className="text-xs font-medium uppercase tracking-wide text-slate-400" htmlFor="start-date">
+            <div className="flex min-w-[200px] items-center gap-2 lg:w-[220px]">
+              <Label htmlFor="start-date" className="shrink-0 text-xs font-medium text-slate-300">
                 Start date
-              </label>
+              </Label>
               <Input
                 id="start-date"
                 type="date"
                 value={startDateFilter}
+                max={endDateFilter || undefined}
                 onChange={(event) => setStartDateFilter(event.target.value)}
+                className="flex-1"
               />
             </div>
-            <div className="space-y-2">
-              <label className="text-xs font-medium uppercase tracking-wide text-slate-400" htmlFor="end-date">
+            <div className="flex min-w-[200px] items-center gap-2 lg:w-[220px]">
+              <Label htmlFor="end-date" className="shrink-0 text-xs font-medium text-slate-300">
                 End date
-              </label>
+              </Label>
               <Input
                 id="end-date"
                 type="date"
                 value={endDateFilter}
+                min={startDateFilter || undefined}
                 onChange={(event) => setEndDateFilter(event.target.value)}
+                className="flex-1"
               />
             </div>
-          </div>
 
+          </div>
           <div className="rounded-lg border border-slate-800/60 bg-slate-950/40">
             <div className="max-h-[480px] overflow-y-auto">
               <Table>
