@@ -1,18 +1,42 @@
-export const formatCurrency = (amount: number, currency = 'USD') =>
-  new Intl.NumberFormat('en-US', {
+// src/utils/formatters.ts
+
+export const formatCurrency = (amount: number): string => {
+  return new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency,
-    maximumFractionDigits: 0,
+    currency: 'USD',
   }).format(amount);
+};
 
-export const formatNumber = (value: number) =>
-  new Intl.NumberFormat('en-US', {
-    maximumFractionDigits: 0,
-  }).format(value);
+export const formatNumber = (num: number): string => {
+  return new Intl.NumberFormat('en-US').format(num);
+};
 
-export const formatDate = (input: string | number | Date) =>
-  new Intl.DateTimeFormat('en-US', {
+export const formatDate = (dateString: string): string => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
     month: 'short',
     day: 'numeric',
-    year: 'numeric',
-  }).format(new Date(input));
+  });
+};
+
+// Add the missing formatTime function
+export const formatTime = (timeString: string): string => {
+  if (!timeString) return '--:--';
+  
+  // Handle both "HH:MM" format and full ISO date strings
+  if (timeString.includes('T')) {
+    return new Date(timeString).toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    });
+  }
+  
+  // For simple "HH:MM" strings
+  return timeString;
+};
+
+// Optional: Format hours with decimal places
+export const formatHours = (hours: number): string => {
+  return hours.toFixed(2);
+};
