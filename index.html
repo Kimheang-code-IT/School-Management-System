@@ -1,13 +1,89 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" sizes="300x300" href="/school-favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>School Management System - Modern Education Platform</title>
+    <meta name="description" content="Streamline school administration with our comprehensive management system. Handle students, teachers, schedules, and payments in one platform.">
+    <meta name="keywords" content="school management, education, student portal, teacher dashboard, administration">
+    <meta name="author" content="School Management System">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="School Management System - Modern Education Platform">
+    <meta property="og:description" content="Streamline school administration with our comprehensive management system.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/og-image.jpg">
+    <meta property="og:url" content="https://yourschoolsystem.com">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="School Management System">
+    <meta name="twitter:description" content="Modern platform for school administration and management.">
+    <meta name="twitter:image" content="/twitter-image.jpg">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="msapplication-TileColor" content="#3b82f6">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Performance Optimizations -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Security Headers (would be set in server config, but included here for reference) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
   </head>
-  <body>
+  
+  <body class="h-full bg-gray-50 antialiased">
     <div id="root"></div>
+    
+    <!-- Loading Fallback -->
+    <div id="loading-fallback" class="fixed inset-0 flex items-center justify-center bg-white z-50 transition-opacity duration-300">
+      <div class="text-center">
+        <div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p class="text-gray-600 font-medium">Loading School Management System...</p>
+      </div>
+    </div>
+    
     <script type="module" src="/src/main.tsx"></script>
+    
+    <script>
+      // Remove loading fallback when app loads
+      window.addEventListener('load', function() {
+        setTimeout(() => {
+          const fallback = document.getElementById('loading-fallback');
+          if (fallback) {
+            fallback.style.opacity = '0';
+            setTimeout(() => fallback.remove(), 300);
+          }
+        }, 500);
+      });
+
+      // Error handling
+      window.addEventListener('error', function(e) {
+        console.error('Application error:', e.error);
+      });
+    </script>
+    
+    <!-- Google Analytics/GTag (optional - uncomment and add your ID) -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    -->
   </body>
 </html>
